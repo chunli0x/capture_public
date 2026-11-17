@@ -42,7 +42,7 @@ Per-class precision is not separable: the judge returns a single accept/reject v
 ## Failure slices
 
 - **Eye-level framing: 0/5 (0%).** The judge accepted all five eye-level captures. This is a systematic failure, not noise: eye-level framing is never caught and blocks any claim of framing robustness.
-- **Blown-out exposure: 2/5 (40%), 3 false-accepts.** The three missed samples carry `acceptable` scores of 0.70, 0.77, and 0.77, above the accept threshold, so the exposure dimension is not driving the verdict for these cases.
+- **Blown-out exposure: 2/5 (40%), 3 false-accepts.** The missed samples pass the exposure dimension, so the exposure check is not driving the verdict for these cases.
 - **Static wall: 2/5 (40%), 3 false-accepts.** Static-wall samples pass sharpness and real-photo scoring and slip through on framing.
 
 ## Limitations
