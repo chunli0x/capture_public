@@ -24,11 +24,13 @@ See the full flow at [capture.fun/how-it-works.html](https://capture.fun/how-it-
 
 ## Screenshots
 
-![Judge: A/B preference](images/screenshots/01-judge-mountains.jpg)
-![Judge: interior scene](images/screenshots/02-judge-interior.jpg)
-![Calibrate: how to judge](images/screenshots/03-calibrate-guide.jpg)
-![Calibrate: standing by your answer](images/screenshots/04-calibrate-standing.jpg)
-![Balances: earnings and level ladder](images/screenshots/05-balances.jpg)
+<p align="center">
+  <img src="images/screenshots/01-judge-mountains.jpg" alt="Judge: A/B preference" width="18%"/>
+  <img src="images/screenshots/02-judge-interior.jpg" alt="Judge: interior scene" width="18%"/>
+  <img src="images/screenshots/03-calibrate-guide.jpg" alt="Calibrate: how to judge" width="18%"/>
+  <img src="images/screenshots/04-calibrate-standing.jpg" alt="Calibrate: standing by your answer" width="18%"/>
+  <img src="images/screenshots/05-balances.jpg" alt="Balances: earnings and level ladder" width="18%"/>
+</p>
 
 ## Architecture
 
