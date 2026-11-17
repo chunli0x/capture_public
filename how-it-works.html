@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How Capture Works</title>
+<meta name="description" content="Capture is a decentralized RLHF network — humans judge a vision model's outputs, consensus decides who gets paid. Test tokens on Solana devnet."/>
+<style>
+:root{--ink:#181626;--cream:#FFF3D6;--blue:#3B82F6;--coral:#F26762;--yellow:#FFD75E;--green:#147D42}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+a{color:var(--ink)}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:2px solid var(--ink)}
+.logo{font-weight:800;letter-spacing:.06em;font-size:20px;text-decoration:none}
+nav a{margin-left:18px;text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+h1{font-size:52px;line-height:1.05;margin:8px 0 16px;font-weight:900;letter-spacing:-.01em;text-transform:uppercase}
+h2{font-size:28px;margin:48px 0 16px;font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+p.lede{font-size:20px;max-width:680px;margin:0 0 8px}
+.pill{display:inline-block;border:2px solid var(--ink);border-radius:999px;padding:4px 14px;font-weight:700;font-size:13px;margin:0 8px 8px 0}
+.pill.blue{background:var(--blue);color:var(--cream);border-color:var(--ink)}
+.pill.yellow{background:var(--yellow)}
+.hero{padding:48px 0 24px}
+.card{border:2px solid var(--ink);border-radius:16px;background:#fff;padding:20px;margin:16px 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:20px 0}
+.step{border:2px solid var(--ink);border-radius:16px;padding:16px;background:#fff}
+.step .num{font-weight:900;font-size:13px;color:var(--blue)}
+.step h3{margin:6px 0 4px;font-size:18px;text-transform:uppercase}
+.step p{margin:0;font-size:14px}
+figure{margin:16px 0}
+figure img{width:100%;height:auto;border:2px solid var(--ink);border-radius:16px;background:#fff}
+figcaption{font-size:13px;margin-top:6px;color:var(--ink)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{border:2px solid var(--ink);padding:8px 12px;text-align:left}
+th{background:var(--blue);color:var(--cream)}
+.honest{background:var(--yellow);border:2px solid var(--ink);border-radius:16px;padding:16px 20px;margin:20px 0}
+.honest ul{margin:8px 0 0;padding-left:20px}
+footer{border-top:2px solid var(--ink);margin-top:48px;padding:20px 0 40px;font-size:14px}
+footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
+@media(max-width:640px){h1{font-size:36px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <a class="logo" href="/">CAPTURE</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/product.html">Product</a>
+    <a href="/how-it-works.html">How it works</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+  </nav>
+</header>
+
+<section class="hero wrap">
+  <span class="eyebrow">Capture / Judgment network</span>
+  <h1>How Capture<br/>works.</h1>
+  <p class="lede">Capture is a decentralized RLHF network. Humans judge a vision model's outputs, consensus decides who gets paid, and a slashable stake prices every judgment.</p>
+  <p>
+    <span class="pill blue">Test tokens on devnet</span>
+    <span class="pill yellow">Over 18, self-attested</span>
+    <span class="pill">No production money</span>
+  </p>
+</section>
+
+<section class="wrap">
+  <h2>The loop</h2>
+  <div class="steps">
+    <div class="step"><span class="num">01</span><h3>Calibrate</h3><p>Pass 10 known-consensus pairs before you can stake or earn.</p></div>
+    <div class="step"><span class="num">02</span><h3>Stake</h3><p>Deposit SKR to unlock paid judging. Your stake is the collateral at risk.</p></div>
+    <div class="step"><span class="num">03</span><h3>Judge</h3><p>Pick the better of two outputs, or rate one 1–5. "Can't tell" is always allowed.</p></div>
+    <div class="step"><span class="num">04</span><h3>Settle</h3><p>K=3 majority decides. Agree and earn; dissent earns nothing; farming is warned, then slashed.</p></div>
+  </div>
+
+  <h2>User flow</h2>
+  <figure>
+    <img src="images/user-flow.png" alt="Capture user flow: calibrate, stake, judge, consensus, settle, dataset"/>
+    <figcaption>Calibrate → stake → judge → consensus → settle. A Merkle anchor commits each resolved batch on-chain.</figcaption>
+  </figure>
+
+  <h2>Architecture</h2>
+  <figure>
+    <img src="images/architecture.png" alt="Capture architecture: Android client, scoring API, Solana settlement"/>
+    <figcaption>Android client → scoring API (calibration, K=3 consensus, accuracy ladder) → Solana settlement (SKR bond escrow, warn/slash, treasury).</figcaption>
+  </figure>
+
+  <h2>The product</h2>
+  <div class="shots">
+    <figure><img src="images/screenshots/01-judge-mountains.jpg" alt="Judge: A/B preference on a mountains scene"/></figure>
+    <figure><img src="images/screenshots/02-judge-interior.jpg" alt="Judge: interior scene"/></figure>
+    <figure><img src="images/screenshots/03-calibrate-guide.jpg" alt="Calibrate: how to judge"/></figure>
+    <figure><img src="images/screenshots/04-calibrate-standing.jpg" alt="Calibrate: standing by your answer"/></figure>
+    <figure><img src="images/screenshots/05-balances.jpg" alt="Balances: earnings and level ladder"/></figure>
+  </div>
+
+  <h2>Measured, not claimed</h2>
+  <div class="card">
+    <p class="eyebrow">Vision judge benchmark</p>
+    <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>71.1%</strong> — a measured baseline that improves as labeled data grows.</p>
+    <table>
+      <tr><th>Class</th><th>Correct</th></tr>
+      <tr><td>Ground-level accept</td><td>5 / 5</td></tr>
+      <tr><td>Blank</td><td>5 / 5</td></tr>
+      <tr><td>Blur</td><td>5 / 5</td></tr>
+      <tr><td>Screenshot</td><td>5 / 5</td></tr>
+      <tr><td>Underexposed</td><td>4 / 5</td></tr>
+      <tr><td>Watermark</td><td>4 / 5</td></tr>
+      <tr><td>Blown-out</td><td>2 / 5</td></tr>
+      <tr><td>Static wall</td><td>2 / 5</td></tr>
+      <tr><td>Eye-level</td><td>0 / 5</td></tr>
+    </table>
+    <p>13 false-accepts, 0 false-rejects: the judge never wrongly rejects good content, but over-accepts some bad content.</p>
+    <p class="eyebrow" style="margin-top:24px">Test suite (measured 2026-10-29)</p>
+    <p>Backend 212 passed / 10 skipped · Rust 15 · Android 67. Counts are from a real run against the live checkout.</p>
+  </div>
+
+  <div class="honest">
+    <strong>Honest lines</strong>
+    <ul>
+      <li>Test SKR and USDC on devnet — no production money, no production claims.</li>
+      <li>Majority-preference bias is real: RLHF on majority preference flattens minority views.</li>
+      <li>18+, self-attested — not a cryptographic proof of age.</li>
+      <li>Built for Android.</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="links">
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/">Home</a>
+    <a href="mailto:hello@capture.fun">hello@capture.fun</a>
+  </div>
+  <p style="margin-top:12px">Capture · Test tokens on Solana devnet · Over 18, self-attested · No production claims</p>
+</footer>
+</body>
+</html>
