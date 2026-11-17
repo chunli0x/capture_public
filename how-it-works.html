@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>How Capture Works</title>
-<meta name="description" content="Capture is a decentralized RLHF network — humans judge a vision model's outputs, consensus decides who gets paid. Test tokens on Solana devnet."/>
+<meta name="description" content="Capture is a decentralized RLHF network — humans review a vision model's outputs, consensus decides who gets paid. Test tokens on Solana devnet."/>
 <style>
 :root{--ink:#181626;--cream:#FFF3D6;--blue:#3B82F6;--coral:#F26762;--yellow:#FFD75E;--green:#147D42}
 *{box-sizing:border-box}
@@ -56,12 +56,12 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
 </header>
 
 <section class="hero wrap">
-  <span class="eyebrow">Capture / Judgment network</span>
+  <span class="eyebrow">Capture / Review network</span>
   <h1>How Capture<br/>works.</h1>
-  <p class="lede">Capture is a decentralized RLHF network. Humans judge a vision model's outputs, consensus decides who gets paid, and a slashable stake prices every judgment.</p>
+  <p class="lede">Capture is a decentralized RLHF network. Humans review a vision model's outputs, consensus decides who gets paid, and a slashable stake prices every review.</p>
   <p>
     <span class="pill blue">Test tokens on devnet</span>
-    <span class="pill yellow">Over 18, self-attested</span>
+    <span class="pill yellow">18+, self-attested</span>
     <span class="pill">No production money</span>
   </p>
 </section>
@@ -69,29 +69,29 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
 <section class="wrap">
   <h2>The loop</h2>
   <div class="steps">
-    <div class="step"><span class="num">01</span><h3>Calibrate</h3><p>Pass 10 known-consensus pairs before you can stake or earn.</p></div>
-    <div class="step"><span class="num">02</span><h3>Stake</h3><p>Deposit SKR to unlock paid judging. Your stake is the collateral at risk.</p></div>
-    <div class="step"><span class="num">03</span><h3>Judge</h3><p>Pick the better of two outputs, or rate one 1–5. "Can't tell" is always allowed.</p></div>
-    <div class="step"><span class="num">04</span><h3>Settle</h3><p>K=3 majority decides. Agree and earn; dissent earns nothing; farming is warned, then slashed.</p></div>
+    <div class="step"><span class="num">01</span><h3>Onboard</h3><p>Complete a liveness check, then pass 10 known-consensus pairs before you can stake or earn.</p></div>
+    <div class="step"><span class="num">02</span><h3>Stake</h3><p>Stake $SKR to unlock paid reviewing. Your stake is the collateral at risk.</p></div>
+    <div class="step"><span class="num">03</span><h3>Review</h3><p>Pick the better of two outputs, or rate one 1–5. "Can't tell" is always allowed.</p></div>
+    <div class="step"><span class="num">04</span><h3>Settle</h3><p>Three reviewers; the 2/3 majority pick becomes the label. Agree and earn; dissent earns nothing; farming is warned, then slashed.</p></div>
   </div>
 
   <h2>User flow</h2>
   <figure>
-    <img src="images/user-flow.png" alt="Capture user flow: calibrate, stake, judge, consensus, settle, dataset"/>
-    <figcaption>Calibrate → stake → judge → consensus → settle. A Merkle anchor commits each resolved batch on-chain.</figcaption>
+    <img src="images/user-flow.png?v=2" alt="Capture user flow: onboard, stake, review, consensus, settle, dataset"/>
+    <figcaption>Onboard → stake → review → consensus → settle. A Merkle anchor commits each resolved batch on-chain.</figcaption>
   </figure>
 
   <h2>Architecture</h2>
   <figure>
-    <img src="images/architecture.png" alt="Capture architecture: Android client, scoring API, Solana settlement"/>
-    <figcaption>Android client → scoring API (calibration, K=3 consensus, accuracy ladder) → Solana settlement (SKR bond escrow, warn/slash, treasury).</figcaption>
+    <img src="images/architecture.png?v=2" alt="Capture architecture: Android client, scoring API, Solana settlement"/>
+    <figcaption>Android client → scoring API (calibration, three-reviewer consensus, accuracy ladder) → Solana settlement ($SKR bond escrow, warn/slash, treasury).</figcaption>
   </figure>
 
   <h2>The product</h2>
   <div class="shots">
-    <figure><img src="images/screenshots/01-judge-mountains.jpg" alt="Judge: A/B preference on a mountains scene"/></figure>
-    <figure><img src="images/screenshots/02-judge-interior.jpg" alt="Judge: interior scene"/></figure>
-    <figure><img src="images/screenshots/03-calibrate-guide.jpg" alt="Calibrate: how to judge"/></figure>
+    <figure><img src="images/screenshots/01-judge-mountains.jpg" alt="Review: A/B preference on a mountains scene"/></figure>
+    <figure><img src="images/screenshots/02-judge-interior.jpg" alt="Review: interior scene"/></figure>
+    <figure><img src="images/screenshots/03-calibrate-guide.jpg" alt="Calibrate: how to review"/></figure>
     <figure><img src="images/screenshots/04-calibrate-standing.jpg" alt="Calibrate: standing by your answer"/></figure>
     <figure><img src="images/screenshots/05-balances.jpg" alt="Balances: earnings and level ladder"/></figure>
   </div>
@@ -99,7 +99,7 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
   <h2>Measured, not claimed</h2>
   <div class="card">
     <p class="eyebrow">Vision judge benchmark</p>
-    <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>71.1%</strong> — a measured baseline that improves as labeled data grows.</p>
+    <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>71.1%</strong> — a measured baseline.</p>
     <table>
       <tr><th>Class</th><th>Correct</th></tr>
       <tr><td>Ground-level accept</td><td>5 / 5</td></tr>
@@ -112,7 +112,7 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
       <tr><td>Static wall</td><td>2 / 5</td></tr>
       <tr><td>Eye-level</td><td>0 / 5</td></tr>
     </table>
-    <p>13 false-accepts, 0 false-rejects: the judge never wrongly rejects good content, but over-accepts some bad content.</p>
+    <p>13 false-accepts, 0 false-rejects: no good content was wrongly rejected in this 45-sample set, though some bad content was over-accepted.</p>
     <p class="eyebrow" style="margin-top:24px">Test suite (measured 2026-10-29)</p>
     <p>Backend 212 passed / 10 skipped · Rust 15 · Android 67. Counts are from a real run against the live checkout.</p>
   </div>
@@ -120,7 +120,7 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
   <div class="honest">
     <strong>Honest lines</strong>
     <ul>
-      <li>Test SKR and USDC on devnet — no production money, no production claims.</li>
+      <li>Test $SKR and USDC on devnet: no production money, no production claims.</li>
       <li>Majority-preference bias is real: RLHF on majority preference flattens minority views.</li>
       <li>18+, self-attested — not a cryptographic proof of age.</li>
       <li>Built for Android.</li>
@@ -135,7 +135,7 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
     <a href="/">Home</a>
     <a href="mailto:hello@capture.fun">hello@capture.fun</a>
   </div>
-  <p style="margin-top:12px">Capture · Test tokens on Solana devnet · Over 18, self-attested · No production claims</p>
+  <p style="margin-top:12px">Capture · Test tokens on Solana devnet · 18+, self-attested · No production claims</p>
 </footer>
 </body>
 </html>
