@@ -1,4 +1,4 @@
-# Capture — Decentralized RLHF
+# Capture: Decentralized RLHF
 
 Humans review a vision model's outputs. Consensus decides who gets paid. A slashable stake prices every review.
 
@@ -7,7 +7,7 @@ vision-model outputs and picks the better one (A/B preference) or rates a
 single output 1–5. Aggregated preferences form an RLHF preference dataset,
 with trust priced into every review through a slashable $SKR bond.
 
-Live on **Solana devnet** with test tokens — no production money, no production claims.
+Live on **Solana devnet** with test tokens: no production money, no production claims.
 
 ## How it works
 
@@ -43,7 +43,7 @@ Android client → scoring API (calibration, three-reviewer consensus, accuracy 
 ## Benchmark
 
 Our vision quality-judge grades every submission against the capture spec
-before acceptance. On a 45-sample labeled set it scored **71.1%** — a measured
+before acceptance. On a 45-sample labeled set it scored **71.1%**: a measured
 baseline. Full per-class breakdown in [benchmark.md](benchmark.md).
 
 ## Test suite (measured 2026-10-29)
@@ -52,12 +52,12 @@ Backend 212 passed / 10 skipped · Rust 15 · Android 67.
 
 ## Honest lines
 
-- Test $SKR and USDC on devnet — no production money, no production claims.
+- Test $SKR and USDC on devnet: no production money, no production claims.
 - Majority-preference bias is real: RLHF on majority preference flattens minority views.
-- 18+, self-attested — not a cryptographic proof of age.
+- 18+, self-attested: not a cryptographic proof of age.
 - Built for Android.
 
 ## Links
 
-- [capture.fun](https://capture.fun) — live product site
+- [capture.fun](https://capture.fun): live product site
 - [Terms](https://capture.fun/terms.html) · [Privacy](https://capture.fun/privacy.html)

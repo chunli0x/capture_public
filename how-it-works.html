@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>How Capture Works</title>
-<meta name="description" content="Capture is a decentralized RLHF network — humans review a vision model's outputs, consensus decides who gets paid. Test tokens on Solana devnet."/>
+<meta name="description" content="Capture is a decentralized RLHF network: humans review a vision model's outputs, consensus decides who gets paid. Test tokens on Solana devnet."/>
 <style>
 :root{--ink:#181626;--cream:#FFF3D6;--blue:#3B82F6;--coral:#F26762;--yellow:#FFD75E;--green:#147D42}
 *{box-sizing:border-box}
@@ -87,6 +87,18 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
     <figcaption>Android client → scoring API (calibration, three-reviewer consensus, accuracy ladder) → Solana settlement ($SKR bond escrow, warn/slash, treasury).</figcaption>
   </figure>
 
+  <h2>Camera to app data pipeline</h2>
+  <div class="card">
+    <p>The path from physical light to a review submission runs through five stages.</p>
+    <ol style="margin:12px 0 0;padding-left:22px;font-size:14px;line-height:1.7">
+      <li><strong>Hardware capture.</strong> Light enters through the lens and lands on a CMOS image sensor. The sensor is covered by a Bayer color filter array, a repeating 2x2 pattern (typically red, green, green, blue) so each photosite records only one color channel. The sensor reads out rows sequentially, a rolling-shutter design, so the top and bottom of a fast-moving scene are captured at slightly different instants. The output at this stage is a raw Bayer frame: one channel per pixel, unprocessed, before any color or tone correction.</li>
+      <li><strong>Image signal processor.</strong> The raw frame passes through the image signal processor (ISP), a fixed-function pipeline on the system-on-chip. The ISP first demosaics the Bayer data, interpolating the two missing color channels at every pixel to produce a full RGB image. It then applies white balance to neutralize the scene illuminant, and it uses auto-exposure and auto-focus feedback loops to set exposure time, gain, and lens position. When the scene's dynamic range demands it, the ISP merges multiple exposures into a single HDR frame. It then applies denoising and sharpening, and finally converts the color space, moving from raw to YUV for processing and then to sRGB for JPEG output.</li>
+      <li><strong>Software stack.</strong> Android exposes the camera through the camera HAL3 interface, which uses a request/result model. The app configures one or more output streams, submits capture requests with per-frame controls, and receives a capture result per frame that carries metadata (exposure time, focus state, timestamp) alongside the image buffer. Above HAL3, the Camera2 API exposes this request/result model directly, and CameraX wraps Camera2 and delivers frames to the app through its ImageAnalysis use case.</li>
+      <li><strong>On-device checks.</strong> Capture runs two passes over the delivered frame, both on device. The capture-spec check grades the frame for ground-level framing, sharpness, exposure, and the absence of a watermark. The liveness check confirms a human is present. Both passes produce a digest, a compact summary of check outcomes. Raw frames and raw biometric data are not written to storage as part of this path.</li>
+      <li><strong>What leaves the device.</strong> Three things cross the network: the frame metadata, the review pick (the A/B preference or the 1-5 rating), and the liveness digest. The raw Bayer frame, the processed JPEG, and the intermediate YUV buffers stay on the device.</li>
+    </ol>
+  </div>
+
   <h2>The product</h2>
   <div class="shots">
     <figure><img src="images/screenshots/01-judge-mountains.jpg" alt="Review: A/B preference on a mountains scene"/></figure>
@@ -99,7 +111,7 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
   <h2>Measured, not claimed</h2>
   <div class="card">
     <p class="eyebrow">Vision judge benchmark</p>
-    <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>71.1%</strong> — a measured baseline.</p>
+    <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>71.1%</strong>: a measured baseline.</p>
     <table>
       <tr><th>Class</th><th>Correct</th></tr>
       <tr><td>Ground-level accept</td><td>5 / 5</td></tr>
@@ -122,7 +134,7 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
     <ul>
       <li>Test $SKR and USDC on devnet: no production money, no production claims.</li>
       <li>Majority-preference bias is real: RLHF on majority preference flattens minority views.</li>
-      <li>18+, self-attested — not a cryptographic proof of age.</li>
+      <li>18+, self-attested: not a cryptographic proof of age.</li>
       <li>Built for Android.</li>
     </ul>
   </div>
