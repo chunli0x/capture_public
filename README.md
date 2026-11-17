@@ -44,7 +44,7 @@ Android client → scoring API (calibration, three-reviewer consensus, accuracy 
 
 Our vision quality-judge grades every submission against the capture spec
 before acceptance. On a 45-sample labeled set it scored **71.1%**: a measured
-baseline. Full per-class breakdown in [benchmark.md](benchmark.md).
+baseline.
 
 ## Test suite (measured 2026-10-29)
 

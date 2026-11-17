@@ -112,19 +112,6 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
   <div class="card">
     <p class="eyebrow">Vision judge benchmark</p>
     <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>71.1%</strong>: a measured baseline.</p>
-    <table>
-      <tr><th>Class</th><th>Correct</th></tr>
-      <tr><td>Ground-level accept</td><td>5 / 5</td></tr>
-      <tr><td>Blank</td><td>5 / 5</td></tr>
-      <tr><td>Blur</td><td>5 / 5</td></tr>
-      <tr><td>Screenshot</td><td>5 / 5</td></tr>
-      <tr><td>Underexposed</td><td>4 / 5</td></tr>
-      <tr><td>Watermark</td><td>4 / 5</td></tr>
-      <tr><td>Blown-out</td><td>2 / 5</td></tr>
-      <tr><td>Static wall</td><td>2 / 5</td></tr>
-      <tr><td>Eye-level</td><td>0 / 5</td></tr>
-    </table>
-    <p>13 false-accepts, 0 false-rejects: no good content was wrongly rejected in this 45-sample set, though some bad content was over-accepted.</p>
     <p class="eyebrow" style="margin-top:24px">Test suite (measured 2026-10-29)</p>
     <p>Backend 212 passed / 10 skipped · Rust 15 · Android 67. Counts are from a real run against the live checkout.</p>
   </div>
