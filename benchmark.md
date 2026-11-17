@@ -12,6 +12,8 @@ We score the judge's verdicts against fixed ground-truth labels and compare agai
 - **Chance**: a coin-flip accept/reject decision.
 - **Always-reject**: rejects every submission.
 
+These baselines are analytical, not external: always-accept and always-reject are computed from the benchmark's own label mix (5 accepts and 40 rejects), and chance is the 50% coin-flip expectation for a binary decision.
+
 The labeled set is reject-heavy, so raw accuracy alone is misleading: "always-reject" scores 88.9% while accepting nothing real. We therefore report both raw accuracy and balanced accuracy (the mean of accept-recall and reject-recall), the standard metric for an imbalanced accept/reject task.
 
 ## Results
