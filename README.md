@@ -42,6 +42,11 @@ Android client → scoring API (calibration, three-reviewer consensus, accuracy 
 
 ## Benchmark
 
+> **Status: preliminary.** n=45 total, n=5 accept-class samples. This run
+> establishes that the judge beats a naive baseline, but the positive sample is
+> too small to report a precise number. Treat the balanced-accuracy figure as
+> directional.
+
 Capture routes every submission through a vision quality-judge that returns an
 accept/reject verdict against the capture spec (ground-level framing, real
 photo, no watermark, sharpness, exposure). This benchmark answers one question:
@@ -58,22 +63,66 @@ against three model-free baselines:
 - **Always-reject** — rejects every submission.
 
 The labeled set is reject-heavy, so raw accuracy alone is misleading:
-"always-reject" scores 88.9% while accepting nothing real. We report both raw
-and balanced accuracy (the mean of accept-recall and reject-recall), the
-standard metric for an imbalanced accept/reject task.
+"always-reject" scores 88.9% while accepting nothing real. We report raw
+accuracy, **balanced accuracy** (the mean of accept-recall and reject-recall),
+and the **false-accept rate** (the share of bad submissions that leak through)
+— the metric that matters most for a quality gate.
 
-| Method | Raw accuracy | Balanced accuracy |
-|---|---|---|
-| Always-accept | 11.1% | 50.0% |
-| Chance (coin flip) | 50.0% | 50.0% |
-| Always-reject | 88.9% | 50.0% |
-| **Capture judge** | **71.1%** | **83.8%** |
+| Method | Raw accuracy | Balanced accuracy | False-accept rate |
+|---|---|---|---|
+| Always-accept | 11.1% | 50.0% | 100% |
+| Chance (coin flip) | 50.0% | 50.0% | ~50% |
+| Always-reject | 88.9% | 50.0% | 0% |
+| **Capture judge** | **71.1%** | **83.8%** | **32.5%** |
 
 <p align="center"><img src="images/benchmark-chart.png" alt="Accuracy by method" width="520"/></p>
 
+### Confusion matrix (judge)
+
+| | Predicted accept | Predicted reject |
+|---|---|---|
+| Actually good (5) | 5 | 0 |
+| Actually bad (40) | 13 | 27 |
+
+### What this shows — and what it doesn't
+
 The judge is the only method that clears the 50% chance baseline on balanced
-accuracy, scoring **83.8%**: it accepts all five real submissions and rejects
-the majority of bad ones, where a naive baseline accepts everything or nothing.
+accuracy (**83.8%**), and it never rejects a good submission (accept-recall
+100%). **But it lets 32.5% of bad submissions through** — roughly one in three.
+That leak rate is the judge's current weakness, and for a quality gate it is
+the number that matters most.
+
+### Precision
+
+With only 5 accept-class samples, the headline number is imprecise.
+Clopper–Pearson 95% confidence intervals:
+
+- accept-recall (5/5): **47.8%–100%**
+- reject-recall (27/40): **50.9%–81.4%**
+- false-accept rate (13/40): **18.6%–49.1%**
+
+The balanced-accuracy estimate therefore sits in an approximate range of
+**49%–91%** — at the low end, indistinguishable from chance.
+
+### Limitations
+
+1. **Tiny positive class (n=5).** One misclassified good submission swings
+   balanced accuracy ~10 points. The accept class needs to grow 20–50×.
+2. **No per-class breakdown.** The 9 classes are reported as one aggregate.
+3. **Single-annotator ground truth** — no recorded inter-annotator agreement,
+   notable for a product whose thesis is human agreement.
+4. **Weak baselines.** Beating a coin flip is a floor; a rule-based heuristic
+   baseline is the real bar.
+5. **Label mix may not match production** (an 89% reject rate may not reflect
+   real traffic).
+
+### Path to a stronger benchmark
+
+1. Grow the accept class to ≥100 (ideally 200+) samples.
+2. Add a rule-based baseline (watermark, sharpness/Laplacian, exposure, framing).
+3. Add 2–3-annotator labeling with reported agreement (Cohen's κ).
+4. Report per-class accuracy.
+5. Target a false-accept rate ≤10% (currently 32.5%).
 
 All tokens referenced are test tokens on Solana devnet.
 

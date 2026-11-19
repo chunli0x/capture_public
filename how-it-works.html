@@ -110,8 +110,8 @@ footer .links a{margin-right:16px;font-weight:600;text-decoration:none}
 
   <h2>Measured, not claimed</h2>
   <div class="card">
-    <p class="eyebrow">Vision judge benchmark</p>
-    <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>71.1%</strong>: a measured baseline.</p>
+    <p class="eyebrow">Vision judge benchmark — preliminary</p>
+    <p>Our vision quality-judge grades each submission against the capture spec before acceptance. On a 45-sample labeled set it scored <strong>83.8% balanced accuracy</strong> (71.1% raw) and beat the chance baseline — but it also lets <strong>32.5% of bad submissions through</strong>. With only 5 accept-class samples the balanced-accuracy range is wide (≈49%–91%), so treat this as a directional first result, not a precise claim. See the README for the full benchmark, confidence intervals, and the path to a stronger run.</p>
     <p class="eyebrow" style="margin-top:24px">Test suite (measured 2026-10-29)</p>
     <p>Backend 212 passed / 10 skipped · Rust 15 · Android 67. Counts are from a real run against the live checkout.</p>
   </div>
