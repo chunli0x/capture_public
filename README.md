@@ -25,9 +25,9 @@ See the full flow at [capture.fun/how-it-works.html](https://capture.fun/how-it-
 ## Screenshots
 
 <p align="center">
-  <img src="images/screenshots/01-judge-mountains.jpg" alt="Review: A/B preference" width="18%"/>
+
   <img src="images/screenshots/02-judge-interior.jpg" alt="Review: interior scene" width="18%"/>
-  <img src="images/screenshots/03-calibrate-guide.jpg" alt="Calibrate: how to review" width="18%"/>
+
   <img src="images/screenshots/04-calibrate-standing.jpg" alt="Calibrate: standing by your answer" width="18%"/>
   <img src="images/screenshots/05-balances.jpg" alt="Balances: earnings and level ladder" width="18%"/>
 </p>
