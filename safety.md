@@ -8,6 +8,8 @@ that catches violations with a manageable false-positive rate.
 **Status: preliminary.** Gold labels are model-authored (not independently
 verified by human annotators). This is a directional before/after measurement.
 
+**Evaluation date:** 2026-11-24.
+
 ## Method
 
 The classifier judges whether a response violates any of five safety rules

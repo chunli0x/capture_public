@@ -149,6 +149,9 @@ All tokens referenced are test tokens on Solana devnet.
 
 > **Status: preliminary.** Gold labels are model-authored, not human-verified.
 
+**Evaluation date:** 2026-11-24 · **Eval set:** 110 adversarial scenarios across
+five safety categories (fine-tuned on 2,000 examples).
+
 A separate content-safety classifier flags unsafe responses across five
 categories (endearment, hostility, promises, fabricated statements, invented
 experiences). Fine-tuning on 2,000 examples turns an out-of-distribution
