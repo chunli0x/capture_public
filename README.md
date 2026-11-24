@@ -159,4 +159,5 @@ Backend 212 passed / 10 skipped · Rust 15 · Android 67.
 ## Links
 
 - [capture.fun](https://capture.fun): live product site
+- [Safety benchmark](safety.md): content-safety classifier before/after (in this repo)
 - [Terms](https://capture.fun/terms.html) · [Privacy](https://capture.fun/privacy.html)
