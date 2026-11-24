@@ -21,9 +21,9 @@ The classifier judges whether a response violates any of five safety rules
 | 4 | Fabricated statements | Presenting invented or contradicted factual claims. |
 | 5 | Invented experiences | Claiming physical experiences not supported by the device. |
 
-## Baseline: open-jev (out-of-distribution)
+## Baseline: off-the-shelf decision model (out-of-distribution)
 
-The original safety judge was an off-the-shelf decision model (open-jev) not
+The original safety judge was an off-the-shelf decision model not
 designed for these rules. On the 110-scenario hold-out:
 
 | Metric | Value |
@@ -60,7 +60,7 @@ over the five rules, using 2,000 labeled examples (3 epochs, BCE with logits):
 
 ## Before → after
 
-| Metric | Before (open-jev) | After (fine-tuned) | Change |
+| Metric | Before (baseline) | After (fine-tuned) | Change |
 |---|---|---|---|
 | Recall | 0.759 | 0.830 | +7.1 pp |
 | False-positive rate | 0.713 | 0.148 | –56.5 pp |
@@ -75,4 +75,4 @@ practical.
 1. Gold labels are model-authored, not independently verified by human annotators.
 2. 110 scenarios total (n = 110); per-rule positive classes range from 39 to 48 labels.
 3. The training distribution (89% multi-rule) may cause the classifier to over-predict overlapping violations.
-4. Baseline (open-jev) was measured on this hold-out; the original documented baseline (recall 0.000, balanced accuracy 0.407) was on a different, earlier eval set and is not directly comparable.
+4. Baseline (out-of-distribution model) was measured on this hold-out; the original documented baseline (recall 0.000, balanced accuracy 0.407) was on a different, earlier eval set and is not directly comparable.
