@@ -145,6 +145,25 @@ The balanced-accuracy estimate therefore sits in an approximate range of
 
 All tokens referenced are test tokens on Solana devnet.
 
+## Safety benchmark
+
+> **Status: preliminary.** Gold labels are model-authored, not human-verified.
+
+A separate content-safety classifier flags unsafe responses across five
+categories (endearment, hostility, promises, fabricated statements, invented
+experiences). Fine-tuning on 2,000 examples turns an out-of-distribution
+baseline that flagged nearly everything into a practical gate. On a
+110-scenario adversarial hold-out:
+
+| Metric | Baseline | Fine-tuned |
+|---|---|---|
+| Recall | 0.759 | 0.830 |
+| False-positive rate | 0.713 | 0.148 |
+| Balanced accuracy | 0.523 | 0.841 |
+
+Full per-rule breakdown, the method, and the reproducible eval set live in
+[safety.md](safety.md) and [safety-eval.jsonl](safety-eval.jsonl).
+
 ## Test suite (measured 2026-10-29)
 
 Backend 212 passed / 10 skipped · Rust 15 · Android 67.
