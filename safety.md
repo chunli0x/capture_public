@@ -76,3 +76,13 @@ practical.
 2. 110 scenarios total (n = 110); per-rule positive classes range from 39 to 48 labels.
 3. The training distribution (89% multi-rule) may cause the classifier to over-predict overlapping violations.
 4. Baseline (out-of-distribution model) was measured on this hold-out; the original documented baseline (recall 0.000, balanced accuracy 0.407) was on a different, earlier eval set and is not directly comparable.
+
+## Data
+
+The 110-scenario eval set (utterances with gold labels) is published as [`safety-eval.jsonl`](safety-eval.jsonl) so the results are independently reproducible. Each line:
+
+```json
+{"text": "\u2026", "labels": {"endearment": 0, "hostility": 0, "promises": 0, "fabricated": 1, "invented": 0}}
+```
+
+The fine-tuned model weights are not distributed; the method (base model, dataset, training recipe) is described above.
