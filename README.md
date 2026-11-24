@@ -92,6 +92,26 @@ accuracy (**83.8%**), and it never rejects a good submission (accept-recall
 That leak rate is the judge's current weakness, and for a quality gate it is
 the number that matters most.
 
+### Reference-free IQA baselines
+
+A single no-reference image-quality score is the natural "rule-based" bar — it
+measures blur, noise, and exposure without training, so it tests whether the
+judge is just re-encoding raw image quality. We scored all 45 samples with
+BRISQUE, NIQE, and MUSIQ (KonIQ-10k) through `pyiqa`, and measured how well each
+separates accepted from rejected submissions (ROC-AUC, threshold-free):
+
+| Metric | ROC-AUC (accept vs reject) |
+|---|---|
+| BRISQUE | 0.64 |
+| NIQE | 0.78 |
+| MUSIQ (KonIQ-10k) | 0.83 |
+
+A quality score gets partway there — MUSIQ ranks an accepted image above a
+rejected one ~83% of the time — but it misses the semantic criteria: a
+watermarked or wrong-perspective submission can be technically clean. That gap
+is what the judge adds beyond raw quality. Like the headline number, these are
+descriptive on a 45-sample set, not a precise estimate of generalization.
+
 ### Precision
 
 With only 5 accept-class samples, the headline number is imprecise.
@@ -111,15 +131,14 @@ The balanced-accuracy estimate therefore sits in an approximate range of
 2. **No per-class breakdown.** The 9 classes are reported as one aggregate.
 3. **Single-annotator ground truth** — no recorded inter-annotator agreement,
    notable for a product whose thesis is human agreement.
-4. **Weak baselines.** Beating a coin flip is a floor; a rule-based heuristic
-   baseline is the real bar.
+4. **Weak baselines.** Reference-free IQA (BRISQUE/NIQE/MUSIQ) is now reported, but there is no tuned rule-based classifier (the real bar) yet.
 5. **Label mix may not match production** (an 89% reject rate may not reflect
    real traffic).
 
 ### Path to a stronger benchmark
 
 1. Grow the accept class to ≥100 (ideally 200+) samples.
-2. Add a rule-based baseline (watermark, sharpness/Laplacian, exposure, framing).
+2. Add a rule-based baseline — in progress: BRISQUE/NIQE/MUSIQ are now reported, but a tuned rule-based classifier (watermark, sharpness/Laplacian, exposure, framing) is the next bar.
 3. Add 2–3-annotator labeling with reported agreement (Cohen's κ).
 4. Report per-class accuracy.
 5. Target a false-accept rate ≤10% (currently 32.5%).
