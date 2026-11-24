@@ -65,8 +65,7 @@ against three model-free baselines:
 The labeled set is reject-heavy, so raw accuracy alone is misleading:
 "always-reject" scores 88.9% while accepting nothing real. We report raw
 accuracy, **balanced accuracy** (the mean of accept-recall and reject-recall),
-and the **false-accept rate** (the share of bad submissions that leak through)
-— the metric that matters most for a quality gate.
+and the **false-accept rate** (the share of bad submissions that leak through).
 
 | Method | Raw accuracy | Balanced accuracy | False-accept rate |
 |---|---|---|---|
@@ -84,13 +83,12 @@ and the **false-accept rate** (the share of bad submissions that leak through)
 | Actually good (5) | 5 | 0 |
 | Actually bad (40) | 13 | 27 |
 
-### What this shows — and what it doesn't
+### What this shows
 
-The judge is the only method that clears the 50% chance baseline on balanced
-accuracy (**83.8%**), and it never rejects a good submission (accept-recall
-100%). **But it lets 32.5% of bad submissions through** — roughly one in three.
-That leak rate is the judge's current weakness, and for a quality gate it is
-the number that matters most.
+The judge clears the 50% chance baseline on balanced accuracy (83.8%) and never
+rejects a good submission (accept-recall 100%). It also lets 32.5% of bad
+submissions through — about one in three. The false-accept rate is the judge's
+weakness right now.
 
 ### Reference-free IQA baselines
 
@@ -138,7 +136,7 @@ The balanced-accuracy estimate therefore sits in an approximate range of
 ### Path to a stronger benchmark
 
 1. Grow the accept class to ≥100 (ideally 200+) samples.
-2. Add a rule-based baseline — in progress: BRISQUE/NIQE/MUSIQ are now reported, but a tuned rule-based classifier (watermark, sharpness/Laplacian, exposure, framing) is the next bar.
+2. Add a rule-based baseline — BRISQUE/NIQE/MUSIQ are now reported, but a tuned rule-based classifier (watermark, sharpness/Laplacian, exposure, framing) is still missing.
 3. Add 2–3-annotator labeling with reported agreement (Cohen's κ).
 4. Report per-class accuracy.
 5. Target a false-accept rate ≤10% (currently 32.5%).
