@@ -172,6 +172,13 @@ layer behind the classifier. Benchmarked across a 2,000-example adversarial set
 (direct, reworded, and obfuscated spellings), its detection improved from 27.5%
 to 98%, with zero false positives.
 
+> **Caveat:** this is a before/after on a deliberately-constructed adversarial
+> set, evaluated against the same corpus the gate was expanded to catch — so
+> 98% is an in-sample ceiling, not an independent hold-out. The 20 remaining
+> misses are all implicit-commitment phrasings ("I will call you tomorrow",
+> "Everything will be okay"), which require intent understanding rather than
+> word-matching.
+
 ## Test suite (measured 2026-10-29)
 
 Backend 212 passed / 10 skipped · Rust 15 · Android 67.
