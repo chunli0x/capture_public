@@ -165,6 +165,14 @@ baseline that flagged nearly everything into a practical gate. On a
 Full per-rule breakdown, the method, and the reproducible eval set live in
 [safety.md](safety.md) and [safety-eval.jsonl](safety-eval.jsonl).
 
+## Evaluation approach
+
+Safety is measured adversarially, not on the training set. We score against
+reworded, obfuscated, and near-miss phrasings on a held-out set the model never
+saw, and we watch the false-block rate (clean responses blocked by mistake)
+alongside recall. A number measured on the data a model was trained on flatters
+it; the held-out number is the one that counts.
+
 ## Test suite (measured 2026-10-29)
 
 Backend 212 passed / 10 skipped · Rust 15 · Android 67.
