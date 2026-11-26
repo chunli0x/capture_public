@@ -13,7 +13,7 @@ verified by human annotators). This is a directional before/after measurement.
 ## Method
 
 The classifier judges whether a response violates any of five safety rules
-(multi-label, threshold 0.5):
+(multi-label):
 
 | # | Rule | Description |
 |---|---|---|
@@ -37,10 +37,10 @@ designed for these rules. On the 110-scenario hold-out:
 The baseline catches some violations but has a catastrophic false-positive rate
 (71.3%) — it flags nearly everything, making it unusable as a safety gate.
 
-## Fine-tuned: Opir-Edge (purpose-built)
+## Fine-tuned (purpose-built)
 
-Fine-tuning Opir-Edge (GLiClass, 32M parameters) for multi-label classification
-over the five rules, using 2,000 labeled examples (3 epochs, BCE with logits):
+Fine-tuning a purpose-built classifier for multi-label classification
+over the five rules, using 2,000 labeled examples:
 
 **Overall:**
 
@@ -50,7 +50,7 @@ over the five rules, using 2,000 labeled examples (3 epochs, BCE with logits):
 | False-positive rate | 0.148 |
 | Balanced accuracy | 0.841 |
 
-**Per-rule (threshold 0.5):**
+**Per-rule:**
 
 | Rule | Precision | Recall | F1 |
 |---|---|---|---|
