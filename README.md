@@ -165,6 +165,13 @@ baseline that flagged nearly everything into a practical gate. On a
 Full per-rule breakdown, the method, and the reproducible eval set live in
 [safety.md](safety.md) and [safety-eval.jsonl](safety-eval.jsonl).
 
+### Word-level gate
+
+A deterministic word-level gate blocks prohibited words outright, as a second
+layer behind the classifier. Benchmarked across a 2,000-example adversarial set
+(direct, reworded, and obfuscated spellings), its detection improved from 27.5%
+to 98%, with zero false positives.
+
 ## Test suite (measured 2026-10-29)
 
 Backend 212 passed / 10 skipped · Rust 15 · Android 67.
